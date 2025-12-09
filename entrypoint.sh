@@ -51,12 +51,12 @@ function init_db() {
     echo "Initializing database..."
     echo "Initializing database with parameters:"
     echo $INIT_PARAMS
-    sudo -u dmdba /home/dmdba/dmdb/bin/dminit $INIT_PARAMS
+    sudo -u dmdba ${DMDB_INSTALL_PATH}/bin/dminit $INIT_PARAMS
     echo "Database initialized"
 }
 function start_dmap() {
     echo "Starting DmAPService..."
-    sudo -u dmdba /home/dmdba/dmdb/bin/dmap dmap_ini=/home/dmdba/dmdb/bin/dmap.ini &
+    sudo -u dmdba ${DMDB_INSTALL_PATH}/bin/dmap dmap_ini=${DMDB_INSTALL_PATH}/bin/dmap.ini &
     echo "DmAPService started"
 }
 
@@ -88,4 +88,4 @@ start_dmap
 
 #启动数据库实例
 echo "Starting DmServer..."
-exec sudo -u dmdba /home/dmdba/dmdb/bin/dmserver path=$DB_PATH/$DB_NAME/dm.ini
+exec sudo -u dmdba ${DMDB_INSTALL_PATH}/bin/dmserver path=$DB_PATH/$DB_NAME/dm.ini
